@@ -10,7 +10,6 @@ const ButtonList = () => {
     "BGMI",
     "Mavi",
     "Shiv Ji",
-
     "Mc Stan",
   ];
 

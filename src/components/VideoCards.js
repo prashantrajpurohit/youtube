@@ -11,7 +11,6 @@ const VideoCards = () => {
   const GetData = async () => {
     const data = await fetch(VIDEOS_API);
     const json = await data.json();
-    console.log(json);
     setVideoCard(json.items);
   };
 
