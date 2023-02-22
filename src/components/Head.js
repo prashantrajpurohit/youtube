@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleBar } from "../utils/appSlice";
+import { cacheResults } from "../utils/searchSlice";
 
 const Head = () => {
   const [searchedText, setSearchedText] = useState("");
   const [suggestedText, setsuggestedText] = useState([]);
   const [showSuggestion, setShowSuggestion] = useState(false);
+  const searchCache = useSelector((store) => store.search);
   const dispatch = useDispatch();
   const toggleBarHandler = () => {
     dispatch(toggleBar());
@@ -13,7 +15,11 @@ const Head = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      FetchSuggestion();
+      if (searchCache[searchedText]) {
+        setsuggestedText(searchCache[searchedText]);
+      } else {
+        FetchSuggestion();
+      }
     }, 200);
     return () => clearTimeout(timer);
   }, [searchedText]);
@@ -24,7 +30,13 @@ const Head = () => {
         searchedText
     );
     const JSON = await suggestion.json();
+    console.log(JSON[1]);
     setsuggestedText(JSON[1]);
+    dispatch(
+      cacheResults({
+        [searchedText]: JSON[1],
+      })
+    );
   }
 
   return (
