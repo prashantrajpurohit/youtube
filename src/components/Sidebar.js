@@ -6,7 +6,7 @@ const Sidebar = () => {
   const isSideBarOpen = useSelector((store) => store.app.isSideBarOpen);
   if (!isSideBarOpen) return null;
   return (
-    <div className="p-5 shadow-lg w-60">
+    <div className="p-5 shadow-lg w-60 cursor-pointer">
       <ul>
         <li>
           <Link to="/"> Home</Link>

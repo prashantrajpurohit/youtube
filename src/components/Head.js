@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleBar } from "../utils/appSlice";
+import { Link } from "react-router-dom";
+import { toggleBar, updateSearch } from "../utils/appSlice";
 import { cacheResults } from "../utils/searchSlice";
 
 const Head = () => {
+  const dispatch = useDispatch();
+  const selectedSearch = useSelector((store) => store.app.selectedSearch);
+
+  const searchCache = useSelector((store) => store.search);
   const [searchedText, setSearchedText] = useState("");
   const [suggestedText, setsuggestedText] = useState([]);
   const [showSuggestion, setShowSuggestion] = useState(false);
-  const searchCache = useSelector((store) => store.search);
-  const dispatch = useDispatch();
   const toggleBarHandler = () => {
     dispatch(toggleBar());
   };
-
+  const SearchHandler = (value) => {
+    dispatch(updateSearch(value));
+  };
+  // useEffect(() => {
+  //   SearchHandler(searchedText);
+  // }, [searchedText]);
   useEffect(() => {
     const timer = setTimeout(() => {
       if (searchCache[searchedText]) {
@@ -30,7 +38,6 @@ const Head = () => {
         searchedText
     );
     const JSON = await suggestion.json();
-    console.log(JSON[1]);
     setsuggestedText(JSON[1]);
     dispatch(
       cacheResults({
@@ -38,7 +45,6 @@ const Head = () => {
       })
     );
   }
-
   return (
     <>
       <div className="grid grid-flow-col p-2 m-2 shadow-lg">
@@ -61,21 +67,32 @@ const Head = () => {
           <input
             onChange={(e) => {
               setSearchedText(e.target.value);
+              SearchHandler(e.target.value);
             }}
             value={searchedText}
             className="w-1/2 border border-gray-400 rounded-l-full  p-1"
             type="text"
             onFocus={() => setShowSuggestion(true)}
-            onBlur={() => setShowSuggestion(false)}
+            onBlur={(e) => {
+              setShowSuggestion(false);
+            }}
           />
-          <button className="border border-gray-400 px-4 py-1 rounded-r-full bg-gray-200 ">
-            🔍
-          </button>
+          <Link to="/searchedPage">
+            <button className="border border-gray-400 px-4 py-1 rounded-r-full bg-gray-200 ">
+              🔍
+            </button>
+          </Link>
 
           {showSuggestion && (
             <div className=" bg-white w-1/3  absolute cursor-default shadow-lg rounded-lg border border-gray-100">
-              {suggestedText.map((text) => (
-                <p key={text} className="p-1 hover:bg-gray-100">
+              {suggestedText?.map((text, idx) => (
+                <p
+                  key={idx}
+                  onClick={() => {
+                    setSearchedText(text);
+                  }}
+                  className="p-1 hover:bg-gray-100"
+                >
                   🔍{text}
                 </p>
               ))}

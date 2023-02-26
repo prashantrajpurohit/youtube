@@ -7,6 +7,7 @@ import Body from "./components/Body";
 import Head from "./components/Head";
 import store from "./utils/store";
 import WatchPage from "./components/WatchPage";
+import SearchedPage from "./components/SearchedPage";
 
 const appRouter = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const appRouter = createBrowserRouter([
         path: "watch",
         element: <WatchPage />,
       },
+      {
+        path: "searchedPage",
+        element: <SearchedPage />,
+      },
     ],
   },
 ]);
@@ -28,7 +33,7 @@ function App() {
   return (
     <Provider store={store}>
       <div>
-        <Head />
+        {/* <Head /> */}
         <RouterProvider router={appRouter} />
       </div>
     </Provider>
