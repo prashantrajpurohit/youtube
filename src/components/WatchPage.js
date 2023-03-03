@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { closeBar } from "../utils/appSlice";
 import CommentSection from "./CommentSection";
 import LiveChat from "./LiveChat";
+import Recommended from "./Recommended";
 
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
@@ -33,7 +34,10 @@ const WatchPage = () => {
         </div>
         <CommentSection />
       </div>
-      <LiveChat />
+      <div className="flex flex-col">
+        <LiveChat />
+        <Recommended />
+      </div>
     </>
   );
 };

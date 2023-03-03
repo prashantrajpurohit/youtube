@@ -8,6 +8,7 @@ import Head from "./components/Head";
 import store from "./utils/store";
 import WatchPage from "./components/WatchPage";
 import SearchedPage from "./components/SearchedPage";
+import ChannelInfo from "./components/ChannelInfo";
 
 const appRouter = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const appRouter = createBrowserRouter([
       {
         path: "searchedPage",
         element: <SearchedPage />,
+      },
+      {
+        path: "channelDetails",
+        element: <ChannelInfo />,
       },
     ],
   },

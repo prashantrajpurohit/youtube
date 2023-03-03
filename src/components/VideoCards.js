@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { NEW_API_KEY, SEARCH_API, VIDEOS_API } from "../utils/constant";
+import { VIDEOS_API } from "../utils/constant";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 const VideoCards = () => {
   const [videoCard, setVideoCard] = useState([]);
   useEffect(() => {

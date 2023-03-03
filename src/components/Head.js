@@ -18,9 +18,7 @@ const Head = () => {
   const SearchHandler = (value) => {
     dispatch(updateSearch(value));
   };
-  // useEffect(() => {
-  //   SearchHandler(searchedText);
-  // }, [searchedText]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (searchCache[searchedText]) {
@@ -77,7 +75,7 @@ const Head = () => {
               setShowSuggestion(false);
             }}
           />
-          <Link to="/searchedPage">
+          <Link to={`/searchedPage/?search_query=${selectedSearch}`}>
             <button className="border border-gray-400 px-4 py-1 rounded-r-full bg-gray-200 ">
               🔍
             </button>

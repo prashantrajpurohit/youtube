@@ -22,7 +22,7 @@ const LiveChat = () => {
 
   return (
     <>
-      <div className=" w-full h-[500px] border border-black mr-4 rounded-lg overflow-y-scroll overflow-x-hidden ">
+      <div className=" w-[327px] h-[500px] border border-black mr-4 rounded-lg overflow-y-scroll overflow-x-hidden ">
         <div className="h-[48px] p-2  bg-black text-white rounded-t-lg absolute w-[327px]">
           LIVE CHAT
           <button className="ml-2"> 🔽 </button>
@@ -63,7 +63,7 @@ const LiveChat = () => {
           </button>
         </div>
         <div>
-          <button className="bg-red-400 text-black w-full rounded-lg hover:bg-gray-500 hover:text-white">
+          <button className="bg-red-400 text-black w-[320px] rounded-lg hover:bg-gray-500 hover:text-white">
             HIDE
           </button>
         </div>
