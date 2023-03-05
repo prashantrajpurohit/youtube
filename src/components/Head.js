@@ -5,6 +5,7 @@ import { toggleBar, updateSearch } from "../utils/appSlice";
 import { cacheResults } from "../utils/searchSlice";
 
 const Head = () => {
+  const [showSuggBox, setShowSuggBox] = useState(true);
   const dispatch = useDispatch();
   const selectedSearch = useSelector((store) => store.app.selectedSearch);
 
@@ -64,16 +65,13 @@ const Head = () => {
         <div className="col-span-10 px-10 mx-3">
           <input
             onChange={(e) => {
-              setSearchedText(e.target.value);
               SearchHandler(e.target.value);
+              setSearchedText(e.target.value);
             }}
             value={searchedText}
             className="w-1/2 border border-gray-400 rounded-l-full  p-1"
             type="text"
-            onFocus={() => setShowSuggestion(true)}
-            onBlur={(e) => {
-              setShowSuggestion(false);
-            }}
+            onFocus={() => (setShowSuggestion(true), setShowSuggBox(true))}
           />
           <Link to={`/searchedPage/?search_query=${selectedSearch}`}>
             <button className="border border-gray-400 px-4 py-1 rounded-r-full bg-gray-200 ">
@@ -81,13 +79,15 @@ const Head = () => {
             </button>
           </Link>
 
-          {showSuggestion && (
+          {(showSuggestion, showSuggBox) && (
             <div className=" bg-white w-1/3  absolute cursor-default shadow-lg rounded-lg border border-gray-100">
               {suggestedText?.map((text, idx) => (
                 <p
                   key={idx}
                   onClick={() => {
                     setSearchedText(text);
+                    SearchHandler(text);
+                    setShowSuggBox(false);
                   }}
                   className="p-1 hover:bg-gray-100"
                 >

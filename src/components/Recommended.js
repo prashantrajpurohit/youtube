@@ -14,7 +14,7 @@ const Recommended = () => {
     setRecommendedVcard(JSON.items);
   };
   return (
-    <div>
+    <div className="mt-8">
       {recommendedVcard.map((card, idx) => {
         return (
           <Link to={`/watch/?v=${card.id}`} key={idx}>

@@ -14,7 +14,7 @@ const ChannelInfo = () => {
     const ChannelsVideo = await fetch(
       `https://www.googleapis.com/youtube/v3/search?key=AIzaSyAFL5XCUWp-Z-D4o6VHKxUNestuASWcofw&channelId=${searchParams.get(
         "c_id"
-      )}&part=snippet&id&order=date&maxResults=20`
+      )}&part=snippet&id&order=date&maxResults=41`
     );
     const JSON = await ChannelsVideo.json();
     console.log(JSON.items);
@@ -23,9 +23,8 @@ const ChannelInfo = () => {
 
   return (
     <>
-      {/* <ChannelDetails /> */}
       <div className="flex flex-wrap m-2">
-        {channelVideo?.map((card, idx) => {
+        {channelVideo.reverse()?.map((card, idx) => {
           if (card.id.kind === "youtube#channel") {
             return (
               <Link
@@ -63,7 +62,7 @@ const ChannelInfo = () => {
                   <p className="from-neutral-400">
                     {card.snippet.channelTitle}
                   </p>
-                  <p>{card?.statistics?.viewCount} views</p>
+                  {/* <p>{card?.statistics?.viewCount} views</p> */}
                 </div>
               </Link>
             );
