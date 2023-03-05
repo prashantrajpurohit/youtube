@@ -19,7 +19,7 @@ const LiveChat = () => {
       );
     }, 1500);
     return () => clearInterval(i);
-  }, []);
+  }, [dispatch]);
 
   function TypeToChat(typedText) {
     dispatch(

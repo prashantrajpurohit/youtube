@@ -20,6 +20,7 @@ const Recommended = () => {
           <Link to={`/watch/?v=${card.id}`} key={idx}>
             <div className=" p-2 w-[327px] ">
               <img
+                alt="thumbnail"
                 className="rounded-lg"
                 src={card.snippet.thumbnails.medium.url}
               />

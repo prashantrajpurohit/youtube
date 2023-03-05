@@ -25,6 +25,7 @@ const VideoCards = () => {
           >
             <div className="">
               <img
+                alt="thumbnail"
                 className="rounded-lg"
                 src={card.snippet.thumbnails.medium.url}
               />

@@ -5,7 +5,7 @@ import { toggleBar, updateSearch } from "../utils/appSlice";
 import { cacheResults } from "../utils/searchSlice";
 
 const Head = () => {
-  const [showSuggBox, setShowSuggBox] = useState(true);
+  const [showSuggBox, setShowSuggBox] = useState(false);
   const dispatch = useDispatch();
   const selectedSearch = useSelector((store) => store.app.selectedSearch);
 
@@ -71,7 +71,10 @@ const Head = () => {
             value={searchedText}
             className="w-1/2 border border-gray-400 rounded-l-full  p-1"
             type="text"
-            onFocus={() => (setShowSuggestion(true), setShowSuggBox(true))}
+            onFocus={() => {
+              setShowSuggestion(true);
+              setShowSuggBox(true);
+            }}
           />
           <Link to={`/searchedPage/?search_query=${selectedSearch}`}>
             <button className="border border-gray-400 px-4 py-1 rounded-r-full bg-gray-200 ">
@@ -100,6 +103,7 @@ const Head = () => {
 
         <div>
           <img
+            alt="user"
             className="h-8"
             src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
           />

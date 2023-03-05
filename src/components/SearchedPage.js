@@ -34,6 +34,7 @@ const SearchedPage = () => {
             >
               <div className="flex">
                 <img
+                  alt="thumbnail"
                   className="rounded-full"
                   src={card.snippet.thumbnails.medium.url}
                 />
@@ -53,6 +54,7 @@ const SearchedPage = () => {
             >
               <div className="flex">
                 <img
+                  alt="thumbnail"
                   className="h-[10rem] mr-4 hover:rounded-xl"
                   src={card.snippet.thumbnails.medium.url}
                 />

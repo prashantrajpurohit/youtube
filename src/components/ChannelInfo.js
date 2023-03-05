@@ -34,6 +34,7 @@ const ChannelInfo = () => {
               >
                 <div className="flex">
                   <img
+                    alt="thumbnail"
                     className="rounded-full"
                     src={card.snippet.thumbnails.medium.url}
                   />
@@ -55,6 +56,7 @@ const ChannelInfo = () => {
               >
                 <div className="">
                   <img
+                    alt="thumbnail"
                     className="rounded-lg"
                     src={card.snippet.thumbnails.medium.url}
                   />

@@ -13,7 +13,7 @@ const WatchPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(closeBar());
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <div className="flex flex-col">
