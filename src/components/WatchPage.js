@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { closeBar } from "../utils/appSlice";
 import CommentSection from "./CommentSection";
@@ -8,7 +8,6 @@ import Recommended from "./Recommended";
 
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
-
   console.log(searchParams.get("v"));
   const dispatch = useDispatch();
   useEffect(() => {

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { toggleBar, updateSearch } from "../utils/appSlice";
+import { toggleBar, toggleSuggBar, updateSearch } from "../utils/appSlice";
 import { cacheResults } from "../utils/searchSlice";
 
 const Head = () => {
-  const [showSuggBox, setShowSuggBox] = useState(false);
+  let suggestion_box = useSelector((store) => store.app.isSuggBoxOpen);
   const dispatch = useDispatch();
   const selectedSearch = useSelector((store) => store.app.selectedSearch);
 
@@ -63,26 +63,31 @@ const Head = () => {
           </a>
         </div>
         <div className="col-span-10 px-10 mx-3">
-          <input
-            onChange={(e) => {
-              SearchHandler(e.target.value);
-              setSearchedText(e.target.value);
-            }}
-            value={searchedText}
-            className="w-1/2 border border-gray-400 rounded-l-full  p-1"
-            type="text"
-            onFocus={() => {
-              setShowSuggestion(true);
-              setShowSuggBox(true);
-            }}
-          />
-          <Link to={`/searchedPage/?search_query=${selectedSearch}`}>
-            <button className="border border-gray-400 px-4 py-1 rounded-r-full bg-gray-200 ">
-              🔍
-            </button>
-          </Link>
+          <form onSubmit={((e) => e.preventDefault, (suggestion_box = false))}>
+            <input
+              onChange={(e) => {
+                SearchHandler(e.target.value);
+                setSearchedText(e.target.value);
+              }}
+              value={searchedText}
+              className="w-1/2 border border-gray-400 rounded-l-full  p-1"
+              type="text"
+              onFocus={() => {
+                setShowSuggestion(true);
+                dispatch(toggleSuggBar);
+              }}
+            />
+            <Link to={`/searchedPage/?search_query=${selectedSearch}`}>
+              <button
+                type="submit"
+                className="border border-gray-400 px-4 py-1 rounded-r-full bg-gray-200 "
+              >
+                🔍
+              </button>
+            </Link>
+          </form>
 
-          {(showSuggestion, showSuggBox) && (
+          {(showSuggestion, suggestion_box) && (
             <div className=" bg-white w-1/3  absolute cursor-default shadow-lg rounded-lg border border-gray-100">
               {suggestedText?.map((text, idx) => (
                 <p
@@ -90,7 +95,7 @@ const Head = () => {
                   onClick={() => {
                     setSearchedText(text);
                     SearchHandler(text);
-                    setShowSuggBox(false);
+                    dispatch(toggleSuggBar());
                   }}
                   className="p-1 hover:bg-gray-100"
                 >

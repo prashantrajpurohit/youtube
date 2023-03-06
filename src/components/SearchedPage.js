@@ -5,10 +5,10 @@ import { closeBar } from "../utils/appSlice";
 import { NEW_API_KEY, SEARCH_API } from "../utils/constant";
 
 const SearchedPage = () => {
+  let suggestion_box = useSelector((store) => store.app.isSuggBoxOpen);
   const [searchedVideo, setSearchedVideo] = useState([]);
   const dispatch = useDispatch();
   const selectedSearch = useSelector((store) => store.app.selectedSearch);
-  console.log(selectedSearch);
   useEffect(() => {
     dispatch(closeBar());
   }, []);
