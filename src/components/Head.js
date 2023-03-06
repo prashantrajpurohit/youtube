@@ -63,7 +63,7 @@ const Head = () => {
           </a>
         </div>
         <div className="col-span-10 px-10 mx-3">
-          <form onSubmit={((e) => e.preventDefault, (suggestion_box = false))}>
+          <form onSubmit={(e) => e.preventDefault}>
             <input
               onChange={(e) => {
                 SearchHandler(e.target.value);
