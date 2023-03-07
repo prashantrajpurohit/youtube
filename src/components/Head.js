@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { toggleBar, toggleSuggBar, updateSearch } from "../utils/appSlice";
+import { toggleBar, updateSearch } from "../utils/appSlice";
 import { cacheResults } from "../utils/searchSlice";
 
 const Head = () => {
-  let suggestion_box = useSelector((store) => store.app.isSuggBoxOpen);
   const dispatch = useDispatch();
   const selectedSearch = useSelector((store) => store.app.selectedSearch);
 
@@ -37,6 +36,7 @@ const Head = () => {
         searchedText
     );
     const JSON = await suggestion.json();
+    console.log(JSON[1]);
     setsuggestedText(JSON[1]);
     dispatch(
       cacheResults({
@@ -74,7 +74,6 @@ const Head = () => {
               type="text"
               onFocus={() => {
                 setShowSuggestion(true);
-                dispatch(toggleSuggBar);
               }}
             />
             <Link to={`/searchedPage/?search_query=${selectedSearch}`}>
@@ -87,7 +86,7 @@ const Head = () => {
             </Link>
           </form>
 
-          {(showSuggestion, suggestion_box) && (
+          {showSuggestion && (
             <div className=" bg-white w-1/3  absolute cursor-default shadow-lg rounded-lg border border-gray-100">
               {suggestedText?.map((text, idx) => (
                 <p
@@ -95,7 +94,6 @@ const Head = () => {
                   onClick={() => {
                     setSearchedText(text);
                     SearchHandler(text);
-                    dispatch(toggleSuggBar());
                   }}
                   className="p-1 hover:bg-gray-100"
                 >
