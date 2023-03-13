@@ -11,7 +11,9 @@ const Sidebar = () => {
         <li>
           <Link to="/"> Home</Link>
         </li>
-        <li>Shorts</li>
+        <Link to="/searchedPage/?search_query=shorts">
+          <li>Shorts</li>
+        </Link>
         <li>Subscription</li>
         <li>Live</li>
       </ul>
@@ -28,7 +30,7 @@ const Sidebar = () => {
       <h2 className="font-semibold">Subscriptions</h2>
       <ul>
         <li>channel 1</li>
-        <li>channel 3</li>
+        <li>channel 2</li>
         <li>channel 3</li>
       </ul>
     </div>

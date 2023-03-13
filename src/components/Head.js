@@ -94,6 +94,7 @@ const Head = () => {
                   onClick={() => {
                     setSearchedText(text);
                     SearchHandler(text);
+                    setShowSuggestion(false);
                   }}
                   className="p-1 hover:bg-gray-100"
                 >

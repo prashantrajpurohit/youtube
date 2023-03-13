@@ -4,16 +4,13 @@ const appSlice = createSlice({
   name: "app",
   initialState: {
     isSideBarOpen: true,
-    isSuggBoxOpen: true,
     selectedSearch: "",
   },
   reducers: {
     toggleBar: (state) => {
       state.isSideBarOpen = !state.isSideBarOpen;
     },
-    toggleSuggBar: (state) => {
-      state.isSuggBoxOpen = !state.isSuggBoxOpen;
-    },
+
     closeBar: (state) => {
       state.isSideBarOpen = false;
     },
@@ -22,6 +19,5 @@ const appSlice = createSlice({
     },
   },
 });
-export const { toggleBar, closeBar, updateSearch, toggleSuggBar } =
-  appSlice.actions;
+export const { toggleBar, closeBar, updateSearch } = appSlice.actions;
 export default appSlice.reducer;

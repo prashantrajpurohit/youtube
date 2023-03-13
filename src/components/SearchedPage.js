@@ -5,7 +5,6 @@ import { closeBar } from "../utils/appSlice";
 import { NEW_API_KEY, SEARCH_API } from "../utils/constant";
 
 const SearchedPage = () => {
-  let suggestion_box = useSelector((store) => store.app.isSuggBoxOpen);
   const [searchedVideo, setSearchedVideo] = useState([]);
   const dispatch = useDispatch();
   const selectedSearch = useSelector((store) => store.app.selectedSearch);
@@ -41,6 +40,30 @@ const SearchedPage = () => {
                 <div className="p-5 m-5 ">
                   <p className="font-semibold py-2  ">{card.snippet.title}</p>
                   <p className="from-neutral-400">{card.snippet.description}</p>
+                </div>
+              </div>
+            </Link>
+          );
+        } else if (card.id.kind === "youtube#playlist") {
+          return (
+            <Link
+              to={`/watch/?v=${card.snippet.channelId}`}
+              key={idx}
+              className="p-5   shadow-lg w-full"
+            >
+              <div className="flex">
+                <img
+                  alt="thumbnail"
+                  className="h-[10rem] mr-4 hover:rounded-xl"
+                  src={card.snippet.thumbnails.medium.url}
+                />
+                <div>
+                  <div>
+                    <p className="font-semibold py-2">{card.snippet.title}</p>
+                    <p className="from-neutral-400">
+                      {card.snippet.channelTitle}
+                    </p>
+                  </div>
                 </div>
               </div>
             </Link>
