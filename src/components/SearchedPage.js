@@ -16,7 +16,7 @@ const SearchedPage = () => {
     SearchedData();
   }, []);
   const SearchedData = async () => {
-    const data = await fetch(SEARCH_API + selectedSearch + NEW_API_KEY);
+    const data = await fetch(SEARCH_API + selectedSearch);
     const json = await data.json();
     console.log(json.items);
     setSearchedVideo(json.items);
