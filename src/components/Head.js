@@ -32,7 +32,7 @@ const Head = () => {
 
   async function FetchSuggestion() {
     const suggestion = await fetch(
-      "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" +
+      "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" +
         searchedText
     );
     const JSON = await suggestion.json();

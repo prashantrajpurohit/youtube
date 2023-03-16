@@ -21,7 +21,7 @@ const VideoCards = () => {
           <Link
             to={`/watch/?v=${card.id}`}
             key={idx}
-            className="p-5   shadow-lg w-1/4 "
+            className="p-5   shadow-lg w-1/3 "
           >
             <div className="">
               <img

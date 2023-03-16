@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { closeBar } from "../utils/appSlice";
 import CommentSection from "./CommentSection";
@@ -12,7 +12,7 @@ const WatchPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(closeBar());
-  }, [dispatch]);
+  }, []);
   return (
     <>
       <div className="flex flex-col">

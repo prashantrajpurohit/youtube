@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { closeBar } from "../utils/appSlice";
-import { NEW_API_KEY, SEARCH_API } from "../utils/constant";
+import { SEARCH_API } from "../utils/constant";
 
 const SearchedPage = () => {
   const [searchedVideo, setSearchedVideo] = useState([]);

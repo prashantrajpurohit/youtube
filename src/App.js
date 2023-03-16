@@ -4,7 +4,6 @@ import "./App.css";
 import MainComponent from "./components/MainComponent";
 
 import Body from "./components/Body";
-import Head from "./components/Head";
 import store from "./utils/store";
 import WatchPage from "./components/WatchPage";
 import SearchedPage from "./components/SearchedPage";
